@@ -1,7 +1,7 @@
 import { DurableObject } from 'cloudflare:workers';
 
 // 改这里测试不同区域: wnam(美西), enam(美东), weur(西欧), eap(东亚) ...
-const LOCATION_HINT = 'wnam' as DurableObjectLocationHint;
+const LOCATION_HINT = 'apac' as DurableObjectLocationHint;
 
 export class EgressTest extends DurableObject {
     async fetch(request: Request): Promise<Response> {
