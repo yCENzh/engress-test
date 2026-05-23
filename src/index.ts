@@ -5,16 +5,16 @@ const LOCATION_HINT = 'wnam' as DurableObjectLocationHint;
 
 export class EgressTest extends DurableObject {
     async fetch(request: Request): Promise<Response> {
-        const resp = await fetch('https://ipinfo.io/json');
-        const info = await resp.json() as any;
+        let ipInfo: any;
+        try {
+            const resp = await fetch('http://ip-api.com/json');
+            ipInfo = await resp.json();
+        } catch (e) {
+            ipInfo = { error: String(e) };
+        }
         return new Response(JSON.stringify({
             do_location_hint: LOCATION_HINT,
-            egress_ip: info.ip,
-            city: info.city,
-            region: info.region,
-            country: info.country,
-            org: info.org,
-            loc: info.loc,
+            ...ipInfo,
         }, null, 2), {
             headers: { 'Content-Type': 'application/json' },
         });
