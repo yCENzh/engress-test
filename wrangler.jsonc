@@ -1,6 +1,6 @@
 {
     "$schema": "node_modules/wrangler/config-schema.json",
-    "name": "egress-test",
+    "name": "engress-test",
     "main": "src/index.ts",
     "compatibility_date": "2025-08-05",
     "migrations": [
